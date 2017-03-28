@@ -4,9 +4,9 @@
 #include "line_time.c"
 #include "goline.c"
 #include <SetDisplayVar.h>
+#include "speed_control.c"
 #include <SetInBeep.h>
 #include <SetWaitForTime.h>
-#include "speed_control.c"
 
 void catch_line(int sp, int light_w)
 {
@@ -19,16 +19,18 @@ void catch_line(int sp, int light_w)
     extern long light_ws;
 
     line_time(sp, 200);
-    if ( light_w==15 )
+    if ( light_w==14 )
     {
         while (1)
         {
             goline(sp);
-            if ( S1&&S5 )
+            if ( S1&&S4 )
             {
                 break;
             }
         }
+        SetDisplayVar(1, S1, YELLOW, BLACK);
+        SetDisplayVar(2, S2, YELLOW, BLACK);
     }
     else
     {
@@ -46,23 +48,24 @@ void catch_line(int sp, int light_w)
         }
         else
         {
-            if ( light_w==5 )
+            if ( light_w==4 )
             {
                 while (1)
                 {
                     goline(sp);
-                    if ( S5 )
+                    if ( S4 )
                     {
                         break;
                     }
                 }
+                SetDisplayVar(2, S2, YELLOW, BLACK);
             }
         }
     }
+    speed_control(0, 0);
     SetInBeep(ON);
     SetWaitForTime(0.05);
     SetInBeep(OFF);
-    speed_control(0, 0);
 }
 #endif
 

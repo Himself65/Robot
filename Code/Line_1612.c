@@ -14,6 +14,10 @@ unsigned int g_temp = 0;
 double line_proportion = 0.6;   //巡线抖动
 long T15 = 0;   //光电15路口判断
 long light_ws = 0;   //走圆弧参数，顺时针将变量设置成5，逆时针设置成1
+unsigned int A1 = 0;
+unsigned int A2 = 0;
+unsigned int A3 = 0;
+unsigned int A4 = 0;
 
 int main(void)
 {

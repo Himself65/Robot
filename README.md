@@ -1,7 +1,7 @@
 ## E3RCU的程序源代码
 *** 
 ### 下载方法
-点击右上角 Clone and Download<br>
+点击右上角 Clone and Download下的Download ZIP<br>
 ![github](https://github.com/Himself65/Robot/blob/master/downloadPicture.PNG)  
 ### 说明
 rcu文件需要RoboExp打开

@@ -1,5 +1,7 @@
 #ifndef _GOLINE_
 #define _GOLINE_
+#include <GetSysTime.h>
+#define _GOLINE_
 #include "HardwareInfo.c"
 #include <GetSysTime.h>
 #include "light01.c"
@@ -25,117 +27,106 @@ void goline(int sp)
     var0 = GetSysTime();
     //读取光电状态
     light01();
-    if ( S1 )
-    {
-        spl=-20;
-        spr=50;
-        g_temp=1;
-        T15 = GetSysTime();
-    }
-    else
-    {
-        if ( S5 )
-        {
-            spl=50;
-            spr=-20;
-            g_temp=5;
-            T15 = GetSysTime();
-        }
-        else
-        {
-            if ( S3 )
+    //适用于光电左2右2在后，左1右1并排中间，相隔黑线
+    
+    	if(S1 )//感应左2有线
+    	{
+    		if(S1 && !(S2||S3||S4) )//光左2有黑线，推测是直角转弯
+    		{
+    			spl=-sp;
+    			spr=sp;
+    			g_temp=1;
+    			T15 = GetSysTime();
+            }
+            else if(S1 &&! (S2||S3) && S4 ) //左右有线但是中间没有线，推测是一条十字路口
             {
-                spl=sp;
+    			spl = sp;
+    			spr = sp;
+    			g_temp=5;
+    		}
+    	}
+    	else if (S4) //感应右2有线
+    	{
+    		if(S4 && !(S2||S3||S4) )//光右二有黑线，推测是直角转弯
+    		{
+    			spl=sp;
+    			spr=-sp;
+    			g_temp=4;
+    			T15 = GetSysTime();
+    		}
+    		else if(S4 &&! (S2||S3) S1)//左右有线但是中间没有线，推测是一条十字路口
+    		{
+    			spl = sp;
+    			spr = sp;
+    			g_temp=5;
+    		}
+    	}
+    	else if(S2)//感应左1有线
+    	{
+    		if(S2 && g_temp == 1)//判断是否是大转弯的一半进程
+    		{
+    
+               spl = -sp;
+               spr = sp;
+    		}
+    		if (S2 &&  var0-T15>=vt)//左2的转动时间大于200单位时间，说明最后一次碰线是S2
+    		{
+    			g_temp=2;
+    		}
+    		else if (S2 && g_temp != 1 )//判断是不是小幅度转弯呢？
+    		{
+    			spl=sp*line_proportion;
                 spr=sp;
-                if ( var0-T15>=vt )
-                {
-                    g_temp=3;
-                }
-                if ( light_ws==1 )
-                {
-                    spl=sp*line_proportion;
-                    spr=sp;
-                }
-                if ( light_ws==5 )
-                {
-                    spl=sp;
-                    spr=sp*line_proportion;
-                }
-            }
-            else
-            {
-                if ( S2 )
-                {
-                    spl=sp*line_proportion;
-                    spr=sp;
-                    if ( var0-T15>=vt )
-                    {
-                        g_temp=2;
-                    }
-                }
-                else
-                {
-                    if ( S4 )
-                    {
-                        spl=sp;
-                        spr=sp*line_proportion;
-                        if ( var0-T15>=vt )
-                        {
-                            g_temp=4;
-                        }
-                    }
-                    else
-                    {
-                        if ( !S1&&!S2&&!S3&&!S4&&!S5 )
-                        {
-                            if ( g_temp==1 )
-                            {
-                                spl=-50;
-                                spr=50;
-                            }
-                            else
-                            {
-                                if ( g_temp==5 )
-                                {
-                                    spl=50;
-                                    spr=-50;
-                                }
-                                else
-                                {
-                                    if ( g_temp==2 )
-                                    {
-                                        spl=sp*line_proportion;
-                                        spr=sp;
-                                    }
-                                    else
-                                    {
-                                        if ( g_temp==4 )
-                                        {
-                                            spl=sp;
-                                            spr=sp*line_proportion;
-                                        }
-                                        else
-                                        {
-                                            if ( g_temp==3 )
-                                            {
-                                                spl=sp;
-                                                spr=sp;
-                                            }
-                                            else
-                                            {
-                                                spl=sp;
-                                                spr=sp;
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-    }
+    		}
+    	}
+    	
+    	
+    	else if (S3)//感应右1有线
+    	{
+    			if(S3 && g_temp == 4)//判断是否是大转弯的一半进程
+    			{
+    				spl = -sp;
+    				spr = sp;
+    			}
+    			if (S3 &&  var0-T15>=vt)//左2的转动时间大于200单位时间，说明最后一次碰线是S2
+    			{
+    				g_temp=2;
+    			}
+    			else if (S3 && g_temp != 4 )//判断是不是小幅度转弯呢？
+    			{
+    				spl=sp*line_proportion;
+    				spr=sp;
+    			}
+    	}
+    	else if( !(S1||S2||S3||S4) )//如果都没有感应到线
+    	{
+    	 if( !(S1||S2||S3||S4)&& t_temp ==1)//最后一次碰线是1
+    		{
+    			spl =-sp;
+    			spr =sp;
+    		}
+    	 if( !(S1||S2||S3||S4)&& t_temp ==2)//最后一次碰线是2
+    		{
+    			spl=sp*line_proportion;
+    			spr=sp;
+    		}	 
+    	 if( !(S1||S2||S3||S4)&& t_temp ==3)//最后一次碰线是3
+    		{
+    			spl=sp;
+    			spr=sp*line_proportion;
+    		}	
+    	 if( !(S1||S2||S3||S4)&& t_temp ==4)//最后一次碰线是4
+    		{
+    			spl =sp;
+    			spr =-sp;
+    		}
+    	 if( !(S1||S2||S3||S4)&& t_temp ==5)//最后一次碰线是5
+    		{
+    			spl = sp;
+    			spr = sp;
+    		}
+    	}
+    			
     speed_control(spl, spr);
 }
 #endif

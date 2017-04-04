@@ -1,5 +1,6 @@
 #include "HardwareInfo.c"
 #include "JMLib.c"
+#include "goline.c"
 u16 tempCS=0;
 u16 G1,G2,G3,G4,G5;
 
@@ -22,6 +23,7 @@ unsigned int A4 = 0;
 int main(void)
 {
     E3RCU_Init();
+    goline(60);
     while(1);
 }
 

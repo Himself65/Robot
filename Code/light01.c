@@ -26,17 +26,18 @@ void light01()
     unsigned int PP2 = 0;
     unsigned int PP3 = 0;
     unsigned int PP4 = 0;
-    long B3 = 0;
-    long B4 = 0;
-    long W1 = 0;
-    long W2 = 0;
-    long W3 = 0;
-    long W4 = 0;
-    long B1 = 0;
-    long B2 = 0;
     //此串代码，将读取到的光电值和系统存入的白色、黑色值的平均值进行比较
     if(!tempCS)
     {
+        long W1 = 0;
+        long W2 = 0;
+        long W3 = 0;
+        long W4 = 0;
+        
+        long B1 = 0;
+        long B2 = 0;
+        long B3 = 0;
+        long B4 = 0;
         B1=GetData(1);
         B2=GetData(2);
         B3=GetData(3);
@@ -63,10 +64,6 @@ void light01()
     PP2 = GetLightSensor(_P2_);
     PP3 = GetLightSensor(_P3_);
     PP4 = GetLightSensor(_P4_);
-    B1 = (B1+W1)/2;
-    B2 = (B2+W2)/2;
-    B3 = (B3+W3)/2;
-    B4 = (B4+W4)/2;
     //判断
     //从系统中读取4个接口的颜色数值
      
@@ -78,7 +75,12 @@ void light01()
     
     S4= PP4 <= A4? 0 :1 ;
     
-    
+    /*
+    if(PP1<=A1)
+    S1=0;
+    else
+    S1=1;
+    */
     
 }
 #endif

@@ -4,6 +4,7 @@
 #include <GetSysTime.h>
 #include "light01.c"
 #include "speed_control.c"
+#include <SetDisplayVar.h>
 
 void goline(int sp)
 {
@@ -200,6 +201,12 @@ void goline(int sp)
     		}
     	}
     speed_control(spl, spr);
+    SetDisplayVar(10, var0, YELLOW, BLACK);
+    SetDisplayVar(11, T14, YELLOW, BLACK);
+    SetDisplayVar(12, vt, YELLOW, BLACK);
+    SetDisplayVar(9, g_templ, YELLOW, BLACK);
+    SetDisplayVar(10, g_temp, YELLOW, BLACK);
+    SetDisplayVar(11, g_tempr, YELLOW, BLACK);
 }
 #endif
 

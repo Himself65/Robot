@@ -1,5 +1,6 @@
-## E3RCU的程序源代码
+﻿## E3RCU的程序源代码
 *** 
+##各种模块介绍（最下方）
 ### 使用说明
 源代码在H1msElf文件夹下
 <br>rcu文件需要软件RoboExp打开
@@ -11,3 +12,13 @@
 ### 开发
 RobotExp V5.3
 <br>Miscrosoft Visual Stdio 2017
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+##H1msElf.c
+主程序，包括基础巡线
+##untilgetline.c
+判断程序，直到碰到黑色光电才会跳出循环

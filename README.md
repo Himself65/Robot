@@ -1,6 +1,6 @@
-﻿## E3RCU的程序源代码
+## E3RCU的程序源代码
 *** 
-##各种模块介绍（最下方）
+#### 各种模块介绍（最下方）
 ### 使用说明
 源代码在H1msElf文件夹下
 <br>rcu文件需要软件RoboExp打开
@@ -18,7 +18,11 @@ RobotExp V5.3
 <br>
 <br>
 <br>
-##H1msElf.c
+#### H1msElf.c
 主程序，包括基础巡线
-##untilgetline.c
+#### untilgetline.c
 判断程序，直到碰到黑色光电才会跳出循环
+##### 使用方法
+<br>```c
+untilgetline();//直到光电检测到线，才会执行printf
+printf("hello,world\n");

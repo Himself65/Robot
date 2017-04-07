@@ -6,6 +6,18 @@
 #include <GetSysTime.h>
 #include <GetData.h>
 #include <SetWaitforDark.h>
+#include"untilgetline.c"
+#include<SetDisplayVar.h>
+
+// define global var
+unsigned int b1 = 0;
+unsigned int b2 = 0;
+unsigned int b3 = 0;
+unsigned int b4 = 0;
+unsigned int w1 = 0;
+unsigned int w2 = 0;
+unsigned int w3 = 0;
+unsigned int w4 = 0;
 
 int main(void)
 {
@@ -15,19 +27,9 @@ int main(void)
         unsigned int p3 = 0;
         unsigned int p4 = 0;
         //
-        unsigned int b1 = 0;
-        unsigned int b2 = 0;
-        unsigned int b3 = 0;
-        unsigned int b4 = 0;
-        //
-        unsigned int w1 = 0;
-        unsigned int w2 = 0;
-        unsigned int w3 = 0;
-        unsigned int w4 = 0;
-        //
         unsigned int beTime = 0;	//记录时间
         
-        unsigned int temp=0;//最后一次碰线，好像没用
+        unsigned int temp=0;//最后一次碰线
         
         unsigned int count=1;//计数器，走死套路
     //读取光电模块
@@ -73,53 +75,92 @@ int main(void)
         unsigned int maxp = p1+p2+p3+p4;
         beTime = GetSysTime();
         //基础判断代码块	
-        	if(maxp>1)
+        	if(maxp>1)//如果同时两个线碰到黑色
         	{
         		if(p2)
         		{
         			SetMotor(_M1_, 30);
         			SetMotor(_M2_, 40);
-        			SetWaitforDark(_P2_, b2);
+        			SetWaitforDark(_P4_,b4);
         		}
         		else if(p3)
         		{
         			SetMotor(_M1_, 40);
         			SetMotor(_M2_, 30);
-        			SetWaitforDark(_P3_, b3);
+        			SetWaitforDark(_P1_, b1);
         		}
         	}
         	else if(p4)
         	{	
         		SetMotor(_M1_, 40);
         		SetMotor(_M2_, 0);
-        		SetWaitforDark(_P2_, b2);
-        		temp=2;
+        		temp=4;
+        		SetWaitForTime(0.02);
+        
         	}
         	else if(p1)
         	{
         		SetMotor(_M1_, 0);
         		SetMotor(_M2_, 40);
-        		SetWaitforDark(_P3_, b3);
-        		temp=3;
+        		temp=1;
+        		SetWaitForTime(0.02);
         	}
         	else if(p3)
         	{
         		SetMotor(_M1_, 45);
         		SetMotor(_M2_, 40);
         		temp=3; 
-        		SetWaitforDark(_P2_, b2);
+        		SetWaitForTime(0.02);
         	}
         	else if(p2)
         	{
         		SetMotor(_M1_, 40);
         		SetMotor(_M2_, 45);
         		temp=2;
-        		SetWaitforDark(_P3_, b3);
-        	}
+        		SetWaitForTime(0.02);
+        	}else{
+        				if(temp==1)
+        				{
+        					SetMotor(_M1_, 0);
+        					SetMotor(_M2_, 40);
+        					SetWaitForTime(0.02);
+        				}
+        				if(temp==2)
+        				{
+        					SetMotor(_M1_, 40);
+        					SetMotor(_M2_, 45);
+        					SetWaitForTime(0.02);
+        				}
+        				if(temp==3)
+        				{
+        					SetMotor(_M1_, 45);
+        					SetMotor(_M2_, 40);
+        					SetWaitForTime(0.02);
+        				}
+        				if(temp==4)
+        				{
+        					SetMotor(_M1_, 40);
+        					SetMotor(_M2_, 0);
+        					SetWaitForTime(0.02);
+        				}
+        				else
+        				{
+        					SetMotor(_M1_, -40);
+        					SetMotor(_M2_, -40);
+        					untilgetline();//如果没什么都没有检测，则一直倒退，只到有检测
+        				}
+        			}
         //SetMotor(_M1_, 40);
         //SetMotor(_M2_, 0);
         //SetWaitforDark(_P1_, pp1);
         
+        SetDisplayVar(10, p1, YELLOW, BLACK);
+        
+        SetDisplayVar(11, p2, YELLOW, BLACK);
+        
+        SetDisplayVar(12, p3, YELLOW, BLACK);
+        
+        SetDisplayVar(13, p4, YELLOW, BLACK);
     }
     while(1);
 }

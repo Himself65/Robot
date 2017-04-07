@@ -23,6 +23,6 @@ RobotExp V5.3
 #### untilgetline.c
 判断程序，直到碰到黑色光电才会跳出循环
 ##### 使用方法
-<br>```c
+```c
 untilgetline();//直到光电检测到线，才会执行printf
 printf("hello,world\n");

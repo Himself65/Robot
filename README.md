@@ -1,10 +1,13 @@
 ## E3RCU的程序源代码
 *** 
+### 使用说明
+<br>源代码在H1msElf文件夹下
+<br>rcu文件需要软件RoboExp打开
+<br> +代码已移植成四光电
+<br> +基础巡线模块完成
 ### 下载方法
 点击右上角 Clone and Download下的Download ZIP<br>
 ![github](https://github.com/Himself65/Robot/blob/master/downloadPicture.PNG)  
-### 说明
-rcu文件需要RoboExp打开
-<br> +代码已移植成四光电
 ### 开发
-RobotExp V5.3 is required.
+<br>RobotExp V5.3
+<br>Miscrosoft Visual Stdio 2017

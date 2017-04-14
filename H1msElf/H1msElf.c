@@ -3,6 +3,7 @@
 #include "speed_control.c"
 #include <SetWaitForTime.h>
 #include "goLine.c"
+#include "TaoLu.c"
 #include <GetData.h>
 #include <SetWaitforDark.h>
 #include"untilgetline.c"
@@ -39,6 +40,9 @@ long beTime = 0;
 unsigned int temp = 0;
 unsigned int count = 0;
 long firstTime = 0;
+unsigned int firstP = 0;
+unsigned int secondP = 0;
+unsigned int countP = 1;
 
 int main(void)
 {
@@ -61,11 +65,12 @@ int main(void)
         w4=GetData(8);
         //扫描出白色的数据值
         
-    speed_control(60, 60);
+    speed_control(80, 80);
     SetWaitForTime(0.1);
     while (1)
     {
         goLine();
+        TaoLu();
     }
     while(1);
 }

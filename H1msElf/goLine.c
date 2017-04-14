@@ -17,11 +17,13 @@
 #undef WAIT_LONG_TIME
 #undef WAIT_TIME
 
-#define FAST 60 //小车快速时一轮子为 60
-#define TURN 30 //小车慢速时一轮子为 55
-#define BACK -25 //小车转向时有一轮速度为- 10
+#define FAST 50 //小车快速时一轮子
+#define TURN 40 //小车慢速时一轮子
+#define BACK -20 //小车转向时有一轮速度
 #define WAIT_LONG_TIME 0.1 //小车等待较长时间
 #define WAIT_TIME 0.02//小车等待时间
+
+#define TIME 300
 
 void goLine()
 {
@@ -35,6 +37,7 @@ void goLine()
     extern unsigned int count;
     extern long firstTime;
 
+    firstTime = GetSysTime();
     getline();
     unsigned int maxp = p1+p2+p3+p4;
     beTime = GetSysTime();
@@ -47,7 +50,8 @@ void goLine()
     			temp=4;
     			SetWaitForTime(WAIT_LONG_TIME);
     		}
-    		else//
+    		//
+    		else
     		{
     			SetMotor(_M1_, FAST);
     			SetMotor(_M2_, BACK);
@@ -64,7 +68,8 @@ void goLine()
     			temp=4;
     			SetWaitForTime(WAIT_LONG_TIME);
     		}
-    		else//
+    		//
+    		else
     		{
     			SetMotor(_M1_, BACK);
     			SetMotor(_M2_, FAST);
@@ -73,17 +78,24 @@ void goLine()
     			beTime = GetSysTime();
     		}
     	}
+    	//左右没线怎么办呢？！
     	else if(p3)
     	{
     		SetMotor(_M1_, TURN);
     		SetMotor(_M2_, FAST);
-    		temp=3; 
+            if ( firstTime - beTime >= TIME )
+            {
+    			temp=3;
+            }
     	}
     	else if(p2)
     	{
     		SetMotor(_M1_, FAST);
     		SetMotor(_M2_, TURN);
-    		temp=2;
+    		if ( firstTime - beTime >= TIME )
+            {
+    			temp=2;
+            }
     	}
     	else
     	{
@@ -105,6 +117,11 @@ void goLine()
     			else if(temp==3)
     			{
     				SetMotor(_M1_, TURN);
+    				SetMotor(_M2_, FAST);
+    			}
+    			else
+    			{
+    				SetMotor(_M1_, FAST);
     				SetMotor(_M2_, FAST);
     			}
     	}

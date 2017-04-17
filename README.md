@@ -12,25 +12,3 @@
 ### 开发
 RobotExp V5.3
 <br>Miscrosoft Visual Stdio 2017
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-#### H1msElf.c
-主程序
-#### untilgetline.c
-判断程序，直到碰到黑色光电才会跳出循环
-#### getline.c
-读取光电值
-#### goLine.c
-基础巡线模块
-#### speed_control.c
-给马达赋值的简单化函数（暂时不用）
-#### TaoLu.c
-走套路的函数，靠光电检测的数量
-##### 使用方法
-```c
-untilgetline();//直到光电检测到线，才会执行printf
-printf("hello,world\n");

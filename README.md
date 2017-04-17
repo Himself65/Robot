@@ -22,10 +22,6 @@ RobotExp V5.3
 主程序
 #### untilgetline.c
 判断程序，直到碰到黑色光电才会跳出循环
-```c
-untilgetline();//直到光电检测到线，才会执行printf
-printf("hello,world\n");
-```
 #### getline.c
 读取光电值
 #### goLine.c
@@ -34,3 +30,7 @@ printf("hello,world\n");
 给马达赋值的简单化函数（暂时不用）
 #### TaoLu.c
 走套路的函数，靠光电检测的数量
+##### 使用方法
+```c
+untilgetline();//直到光电检测到线，才会执行printf
+printf("hello,world\n");

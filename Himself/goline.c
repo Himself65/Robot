@@ -74,37 +74,47 @@ void goline(int sp)
                     }
                     else
                     {
-                        if(g_temp==1)
-                        {
-                        	SetMotor(_M1_, -30);
-                        	SetMotor(_M2_, 45);
-                        }
-                        else if(g_temp==4)
-                        {
-                        	SetMotor(_M1_, 45);
-                        	SetMotor(_M2_, -30);
-                        }
-                         else if(g_temp==2)
-                        {
-                        	SetMotor(_M1_, sp*line_proportion);
-                        	SetMotor(_M2_, sp);//向左转弯
-                        }
-                        else if(g_temp==3)
-                        {
-                            SetMotor(_M1_, sp);
-                            SetMotor(_M2_, sp*line_proportion);
-                        }
-                        else if(g_temp==5)
+                        if ( !(S1&&S2&&S3&&S4) )
                         {
                             SetMotor(_M1_, sp);
                             SetMotor(_M2_, sp);
+                            g_temp=5;
+                            SetWaitForTime(0.02);
                         }
                         else
                         {
-                        	SetMotor(_M1_,45);
-                        	SetMotor(_M2_,-30);
+                            if(g_temp==1)
+                            {
+                            	SetMotor(_M1_, -30);
+                            	SetMotor(_M2_, 45);
+                            }
+                            else if(g_temp==4)
+                            {
+                            	SetMotor(_M1_, 45);
+                            	SetMotor(_M2_, -30);
+                            }
+                             else if(g_temp==2)
+                            {
+                            	SetMotor(_M1_, sp*line_proportion);
+                            	SetMotor(_M2_, sp);//向左转弯
+                            }
+                            else if(g_temp==3)
+                            {
+                                SetMotor(_M1_, sp);
+                                SetMotor(_M2_, sp*line_proportion);
+                            }
+                            else if(g_temp==5)
+                            {
+                                SetMotor(_M1_, sp);
+                                SetMotor(_M2_, sp);
+                            }
+                            else
+                            {
+                            	SetMotor(_M1_,45);
+                            	SetMotor(_M2_,-30);
+                            }
+                            SetWaitForTime(0.02);
                         }
-                        SetWaitForTime(0.02);
                     }
                 }
             }

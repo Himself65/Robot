@@ -22,23 +22,6 @@ void light01()
     unsigned int PP2 = 0;
     unsigned int PP3 = 0;
     unsigned int PP4 = 0;
-    if(!tempCS)
-    {
-    	//首次启动光电延时
-    	S1 = GetLightSensor(_P1_);
-        S2 = GetLightSensor(_P2_);
-        S3 = GetLightSensor(_P3_);
-        S4 = GetLightSensor(_P4_);
-    
-        
-        //首次启动写入光电判断阀值
-        /*G1=GetData(1);
-        G2=GetData(2);
-        G3=GetData(3);
-        G4=GetData(4);*/
-        SetWaitForTime(0.01);
-        tempCS=1;
-    }
     S1 = GetLightSensorData(_P1_);
     S2 = GetLightSensorData(_P2_);
     S3 = GetLightSensorData(_P3_);

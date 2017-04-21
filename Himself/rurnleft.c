@@ -5,7 +5,7 @@
 
 void rurnleft()
 {
-    turn_w(-50, 50, 4);
+    turn_w(-50, 50, 3);
 }
 #endif
 

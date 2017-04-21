@@ -12,6 +12,7 @@ void turn_w(int spl, int spr, int whi)
     extern unsigned int S2;
     extern unsigned int S3;
     extern unsigned int S4;
+    extern unsigned int S5;
 
     speed_control(spl, spr);
     SetWaitForTime(0.15);
@@ -50,6 +51,16 @@ void turn_w(int spl, int spr, int whi)
                         if ( S4 )
                         {
                             break;
+                        }
+                    }
+                    else
+                    {
+                        if ( whi==5 )
+                        {
+                            if ( S5 )
+                            {
+                                break;
+                            }
                         }
                     }
                 }

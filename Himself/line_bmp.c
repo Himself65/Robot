@@ -5,7 +5,6 @@
 #include "goline.c"
 #include <GetMotorCode.h>
 #include "speed_control.c"
-#include <SetDisplayVar.h>
 
 void line_bmp(int sp, unsigned long bmp)
 {
@@ -24,8 +23,6 @@ void line_bmp(int sp, unsigned long bmp)
             speed_control(0, 0);
             break;
         }
-        SetDisplayVar(3, vbmp, YELLOW, BLACK);
-        SetDisplayVar(4, vbmp1, YELLOW, BLACK);
     }
 }
 #endif

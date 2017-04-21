@@ -51,20 +51,8 @@ void xuanzhuanZW(int turnZW)
                         SetMusicAddData(8, 4);
                         SetMusicAddData(10, 4);
                         SetMusicAddData(8, 4);
-                        SetMusicAddData(6, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(10, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(6, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(10, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(6, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(10, 4);
-                        SetMusicAddData(8, 4);
                         SetMusicPlay();
-                        SetWaitForTime(5);
+                        SetWaitForTime(2);
                     }
                 }
             }

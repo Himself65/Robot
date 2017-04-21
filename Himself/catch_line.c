@@ -81,6 +81,20 @@ void catch_line(int sp, int light_w)
                             }
                         }
                     }
+                    else
+                    {
+                        if ( light_w==33 )
+                        {
+                            while (1)
+                            {
+                                goline(sp);
+                                if ( S1+S2+S3+S4>1 )
+                                {
+                                    break;
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }

@@ -6,7 +6,7 @@
 
 void TiaoZhan2()
 {
-    go_bmp(-30, 600);
+    go_bmp(-50, 600);
     turn_w(-30, 30, 1);
     turn_w(-30, 30, 3);
 }

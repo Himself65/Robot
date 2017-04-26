@@ -7,7 +7,7 @@
 
 void weizhuangZB(int COLOR)
 {
-    go_bmp(50, 100);
+    go_bmp(55, 300);
     if ( COLOR==0 )
     {
         SetLCDClear(BLACK);
@@ -61,7 +61,7 @@ void weizhuangZB(int COLOR)
             }
         }
     }
-    SetWaitForTime(1);
+    SetWaitForTime(2);
     SetLCDClear(BLACK);
 }
 #endif

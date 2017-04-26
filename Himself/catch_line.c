@@ -70,12 +70,12 @@ void catch_line(int sp, int light_w)
                 }
                 else
                 {
-                    if ( light_w==5 )
+                    if ( light_w==4 )
                     {
                         while (1)
                         {
                             goline(sp);
-                            if ( S5 )
+                            if ( S4 )
                             {
                                 break;
                             }

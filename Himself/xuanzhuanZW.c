@@ -2,20 +2,19 @@
 #define _XUANZHUANZW_
 #include "HardwareInfo.c"
 #include "go_bmp.c"
-#include "turn_angle.c"
 #include "turn_w.c"
-#include "speed_control.c"
-#include <SetMusicAddData.h>
-#include <SetMusicPlay.h>
+#include "turn_angle.c"
+#include <SetLCDClear.h>
 #include <SetWaitForTime.h>
 
 void xuanzhuanZW(int turnZW)
 {
     go_bmp(50, 400);
+    turn_w(-30, 45, 2);
     if ( turnZW==1 )
     {
-        turn_angle(50, 4500);
-        turn_w(50, -50, 3);
+        turn_angle(50, 3500);
+        turn_w(50, -50, 2);
     }
     else
     {
@@ -30,7 +29,7 @@ void xuanzhuanZW(int turnZW)
             {
                 turn_angle(50, 2500);
                 turn_w(50, -50, 3);
-                turn_angle(-50, 2350);
+                turn_angle(-50, 2600);
                 turn_w(-50, 50, 3);
             }
             else
@@ -46,19 +45,14 @@ void xuanzhuanZW(int turnZW)
                 {
                     if ( turnZW==5 )
                     {
-                        speed_control(0, 0);
-                        SetMusicAddData(6, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicAddData(10, 4);
-                        SetMusicAddData(8, 4);
-                        SetMusicPlay();
+                        SetLCDClear(GREEN);
                         SetWaitForTime(2);
                     }
                 }
             }
         }
     }
-    go_bmp(50, 500);
+    go_bmp(50, 600);
 }
 #endif
 

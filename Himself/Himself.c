@@ -6,6 +6,7 @@
 #include "line_bmp.c"
 #include "catch_line.c"
 #include "xuanzhuanZW.c"
+#include "line_time.c"
 #include <SetLCDClear.h>
 #include "weizhuangZB.c"
 #include "speed_control.c"
@@ -42,8 +43,9 @@ int main(void)
     line_bmp(70, 7000);
     catch_line(35, 14);
     xuanzhuanZW(5);
-    line_bmp(60, 500);
+    line_time(65, 2);
     SetLCDClear(BLACK);
+    line_bmp(60, 300);
     catch_line(45, 14);
     weizhuangZB(1);
     go_bmp(55, 300);

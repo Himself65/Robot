@@ -5,7 +5,6 @@
 #include "turn_w.c"
 #include "turn_angle.c"
 #include <SetLCDClear.h>
-#include <SetWaitForTime.h>
 
 void xuanzhuanZW(int turnZW)
 {
@@ -46,7 +45,6 @@ void xuanzhuanZW(int turnZW)
                     if ( turnZW==5 )
                     {
                         SetLCDClear(GREEN);
-                        SetWaitForTime(2);
                     }
                 }
             }
